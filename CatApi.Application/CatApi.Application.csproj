@@ -15,8 +15,4 @@
     <ProjectReference Include="..\CatApi.Domain\CatApi.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Commands\Cat\CreateCat\" />
-  </ItemGroup>
-
 </Project>

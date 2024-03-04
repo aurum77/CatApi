@@ -1,3 +1,4 @@
+using CatApi.Application.Features.Commands.Cat.CreateCat;
 using CatApi.Application.Features.Queries.Cat.GetAllCats;
 using CatApi.Application.Features.Queries.Cat.GetCatById;
 using CatApi.Application.Repositories;
@@ -21,18 +22,11 @@ namespace CatApi.API.Controllers
         }
 
         [HttpGet(Name = "AddCat")]
-        public async Task<IActionResult> Add()
+        public async Task<IActionResult> AddCatAsync([FromQuery] CreateCatCommandRequest createCatCommandRequest)
         {
-            var query = await _catWriteRepository.AddAsync(new()
-            {
-                Id = Guid.NewGuid(),
-                Name = "Hamza",
-                Color = "Tekir",
-            });
+            CreateCatCommandResponse response = await _mediator.Send(createCatCommandRequest);
 
-            await _catWriteRepository.SaveAsync();
-
-            return Ok(query);
+            return Ok(response);
         }
 
         [HttpGet(Name = "GetCat")]
