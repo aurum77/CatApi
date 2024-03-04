@@ -1,4 +1,5 @@
 using CatApi.Application.Features.Queries.Cat.GetAllCats;
+using CatApi.Application.Features.Queries.Cat.GetCatById;
 using CatApi.Application.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -33,10 +34,18 @@ namespace CatApi.API.Controllers
 
             return Ok(query);
         }
+
         [HttpGet(Name = "GetCat")]
         public async Task<IActionResult> GetAsync([FromQuery] GetAllCatsQueryRequest getAllCatsQueryRequest)
         {
             GetAllCatsQueryResponse response = await _mediator.Send(getAllCatsQueryRequest);
+            return Ok(response);
+        }
+
+        [HttpGet(Name = "GetCatById")]
+        public async Task<IActionResult> GetByIdAsync([FromQuery] GetByIdCatQueryRequest getByIdCatQueryRequest)
+        {
+            GetByIdCatQueryResponse response = await _mediator.Send(getByIdCatQueryRequest);
             return Ok(response);
         }
     }

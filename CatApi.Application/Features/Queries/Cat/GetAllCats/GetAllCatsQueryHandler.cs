@@ -1,6 +1,5 @@
 ﻿using CatApi.Application.Services;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +22,6 @@ namespace CatApi.Application.Features.Queries.Cat.GetAllCats
             var data = _catService.GetCats();
             int totalDataCount = data.Count();
 
-            Console.WriteLine("WE DO A LITTLE TROLLING");
             return new()
             {
                 Cats = data,
