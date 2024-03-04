@@ -20,7 +20,7 @@ namespace CatApi.Application.Features.Queries.Cat.GetAllCats
 
         public async Task<GetAllCatsQueryResponse> Handle(GetAllCatsQueryRequest request, CancellationToken cancellationToken)
         {
-            IQueryable<CatApi.Domain.Entities.Cat> data = _catService.GetCats();
+            var data = _catService.GetCats();
             int totalDataCount = data.Count();
 
             Console.WriteLine("WE DO A LITTLE TROLLING");
